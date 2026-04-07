@@ -2,14 +2,18 @@ name: Standards Radar Update
 
 on:
   schedule:
-    - cron: '0 13 * * 1' # Lunes 8 AM Bogotá
-  workflow_dispatch:
+    # Se ejecuta todos los lunes a las 13:00 UTC (8:00 AM hora Bogotá)
+    - cron: '0 13 * * 1'
+  workflow_dispatch: # Permite ejecutarlo manualmente con el botón "Run workflow"
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    # IMPORTANTE: Permisos para que el robot pueda escribir en tu repositorio
     permissions:
-      contents: write # Permiso explícito de escritura
+      contents: write
+      
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -20,7 +24,8 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install pandas requests
+        run: |
+          pip install pandas requests
 
       - name: Run tracker
         run: python rastreador.py
@@ -29,6 +34,8 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          # Agregamos el CSV generado o actualizado
           git add auditoria_beta_v1.csv
-          git commit -m "Automated update of standards status" || exit 0
+          # Solo hace commit si hay cambios, para evitar errores si todo sigue igual
+          git commit -m "Automated update of standards status" || echo "No changes to commit"
           git push
