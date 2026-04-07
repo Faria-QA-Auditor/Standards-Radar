@@ -1,59 +1,25 @@
-import requests
-import hashlib
+import streamlit as st
 import pandas as pd
-from datetime import datetime
 
-SITES = {
-    "New Jersey": "https://www.nj.gov/education/standards/",
-    "Cambridge IGCSE": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-upper-secondary/cambridge-igcse/subjects/",
-    "AP": "https://apstudents.collegeboard.org/courses",
-    "New York State": "https://www.nysed.gov/standards-instruction/nys-p-12-learning-standards-content-area",
-    "California": "https://www.cde.ca.gov/be/st/ss/",
-    "Connecticut": "https://portal.ct.gov/sde/ct-core-standards",
-    "WIDA": "https://wida.wisc.edu/",
-    "CCSS": "https://corestandards.org/",
-    "ISTE": "https://iste.org/standards"
-}
+st.set_page_config(page_title="Standards Radar", layout="wide")
 
-def run_audit():
-    try:
-        df_old = pd.read_csv("auditoria_beta_v1.csv")
-    except:
-        df_old = pd.DataFrame()
+st.title("📡 Standards Update Radar")
 
-    results = []
-    headers = {'User-Agent': 'Mozilla/5.0'}
+try:
+    # Intentamos leer el archivo
+    df = pd.read_csv("auditoria_beta_v1.csv")
+    
+    if df.empty or len(df.columns) < 2:
+        st.warning("The database is currently empty. Please run the tracker in GitHub Actions.")
+    else:
+        # Métricas
+        c1, c2 = st.columns(2)
+        c1.metric("Total Sites", len(df))
+        
+        # Mostrar tabla
+        st.subheader("Current Status")
+        st.dataframe(df, use_container_width=True, hide_index=True)
 
-    for name, url in SITES.items():
-        try:
-            res = requests.get(url, headers=headers, timeout=20)
-            new_hash = hashlib.sha256(res.text.encode('utf-8')).hexdigest()
-            
-            # Comparison Logic
-            old_hash = df_old.loc[df_old['Organization'] == name, 'Hash'].values[0] if not df_old.empty and name in df_old['Organization'].values else None
-            
-            if old_hash and new_hash != old_hash:
-                status = "🚨 CHANGE DETECTED!"
-            else:
-                status = "✔️ No changes"
-            
-            results.append({
-                "Organization": name, 
-                "Status": status, 
-                "Check Date": datetime.now().strftime("%Y-%m-%d"), 
-                "Hash": new_hash, 
-                "URL": url
-            })
-        except:
-            results.append({
-                "Organization": name, 
-                "Status": "❌ Connection Error", 
-                "Check Date": datetime.now().strftime("%Y-%m-%d"), 
-                "Hash": None, 
-                "URL": url
-            })
-
-    pd.DataFrame(results).to_csv("auditoria_beta_v1.csv", index=False)
-
-if __name__ == "__main__":
-    run_audit()
+except Exception as e:
+    st.error(f"Waiting for initial data... (Error: {e})")
+    st.info("Please go to GitHub Actions and run the 'Standards Radar Update' workflow.")
