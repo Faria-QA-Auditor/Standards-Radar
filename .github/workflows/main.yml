@@ -2,14 +2,14 @@ name: Standards Radar Update
 
 on:
   schedule:
-    - cron: '0 13 * * 1'
+    - cron: '0 13 * * 1' # Lunes 8 AM Bogotá
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Esto asegura el permiso de escritura adicional
+      contents: write # Permiso explícito de escritura
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
