@@ -2,18 +2,20 @@ name: Standards Radar Update
 
 on:
   schedule:
-    - cron: '0 13 * * 1' # Runs every Monday at 8 AM (Colombia time)
-  workflow_dispatch: # This adds the "Run workflow" button for manual testing
+    - cron: '0 13 * * 1'
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Esto asegura el permiso de escritura adicional
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
