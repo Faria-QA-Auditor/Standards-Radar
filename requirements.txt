@@ -1,0 +1,43 @@
+import requests
+import hashlib
+import pandas as pd
+from datetime import datetime
+
+SITES = {
+    "New Jersey": "https://www.nj.gov/education/standards/",
+    "Cambridge IGCSE": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-upper-secondary/cambridge-igcse/subjects/",
+    "AP": "https://apstudents.collegeboard.org/courses",
+    "New York State": "https://www.nysed.gov/standards-instruction/nys-p-12-learning-standards-content-area",
+    "California": "https://www.cde.ca.gov/be/st/ss/",
+    "Connecticut": "https://portal.ct.gov/sde/ct-core-standards",
+    "WIDA": "https://wida.wisc.edu/",
+    "CCSS": "https://corestandards.org/",
+    "ISTE": "https://iste.org/standards"
+}
+
+def run_audit():
+    try:
+        df_old = pd.read_csv("auditoria_beta_v1.csv")
+    except:
+        df_old = pd.DataFrame()
+
+    results = []
+    headers = {'User-Agent': 'Mozilla/5.0'}
+
+    for name, url in SITES.items():
+        try:
+            res = requests.get(url, headers=headers, timeout=20)
+            new_hash = hashlib.sha256(res.text.encode('utf-8')).hexdigest()
+            
+            # Comparación
+            old_hash = df_old.loc[df_old['Organización'] == name, 'Hash'].values[0] if not df_old.empty and name in df_old['Organización'].values else None
+            status = "🚨 ¡CAMBIO DETECTADO!" if old_hash and new_hash != old_hash else "✔️ Sin cambios"
+            
+            results.append({"Organización": name, "Estado Actual": status, "Fecha": datetime.now().strftime("%Y-%m-%d"), "Hash": new_hash, "URL": url})
+        except:
+            results.append({"Organización": name, "Estado Actual": "❌ Error", "Fecha": datetime.now().strftime("%Y-%m-%d"), "Hash": None, "URL": url})
+
+    pd.DataFrame(results).to_csv("auditoria_beta_v1.csv", index=False)
+
+if __name__ == "__main__":
+    run_audit()
