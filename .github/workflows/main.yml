@@ -1,0 +1,32 @@
+name: Standards Radar Update
+
+on:
+  schedule:
+    - cron: '0 13 * * 1' # Runs every Monday at 8 AM (Colombia time)
+  workflow_dispatch: # This adds the "Run workflow" button for manual testing
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install pandas requests
+
+      - name: Run tracker
+        run: python rastreador.py
+
+      - name: Commit and Push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add auditoria_beta_v1.csv
+          git commit -m "Automated update of standards status" || exit 0
+          git push
