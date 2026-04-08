@@ -1,10 +1,51 @@
-Organization,Status,Check Date,Hash,URL
-New Jersey,✔️ No changes,2026-04-07,59a9e553716c64a295afd130fd67fa94b0e94aebd01a307859bbdcafa0557742,https://www.nj.gov/education/standards/
-Cambridge IGCSE,✔️ No changes,2026-04-07,e7aa51aaadc5aea0835942523634e3d5422c809aeaefd3923b1c326f4ca2ad44,https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-upper-secondary/cambridge-igcse/subjects/
-AP,✔️ No changes,2026-04-07,eab11f6b81af988473848982a714b2a43b39abc46999670d2adea7c90f282707,https://apstudents.collegeboard.org/courses
-New York State,✔️ No changes,2026-04-07,0bc88d6204f603d1e6c0cba1f4545e7c8eca9b759cc9c6edcb2a027b0cfdd8fa,https://www.nysed.gov/standards-instruction/nys-p-12-learning-standards-content-area
-California,✔️ No changes,2026-04-07,e8d6396928758da88a3cb51fc1a4e7b1f6f302bc4cc9f5166ed9ef428e6f8b24,https://www.cde.ca.gov/be/st/ss/
-Connecticut,✔️ No changes,2026-04-07,d8377f4a45a6dec8e8294518e2358b88bb3c4abb2bc6d030861595b02b2fc8b4,https://portal.ct.gov/sde/ct-core-standards
-WIDA,✔️ No changes,2026-04-07,c0abd11b4300fa89676d3fafb450a65fb8c6eb37211c8829d78323b88cf516de,https://wida.wisc.edu/
-CCSS,✔️ No changes,2026-04-07,4559a8ac3e610a99f38994470082fae7e5857c27a332f092cec715abbe1a70e1,https://corestandards.org/
-ISTE,✔️ No changes,2026-04-07,f1ba1cd13ba20de25eb6af8d3ec9db5efed58db5a6b23c54bf29af779007bc1b,https://iste.org/standards
+Organization,Subject,Status,Check Date,Mapped Version,Hash,URL
+Alabama,General,✔️ No changes,2026-04-08,2023,91feb7e08c60c76dd402fadcbc6dec8b9a76a103db7baafef55bfe64f9be8340,https://www.alabamaachieves.org/academic-standards/
+Alaska,General,✔️ No changes,2026-04-08,2023,c2a31cfd40fe521087c4a1fc2f54063dc7bab945c5e121d13ccf5adab0a3f8b2,https://education.alaska.gov/akstandards
+Arizona,General,✔️ No changes,2026-04-08,2024,2e8c4c46b5c98be7287132111ca0463796ae684b0f6b368ea6b3beafb57c6e04,https://www.azed.gov/standards-practices
+Arkansas,General,✔️ No changes,2026-04-08,2023,0e426ab8ef6f39ecc997e881e33fff6c3eadfedfa77c01f152458cbc29e01d89,https://dese.ade.arkansas.gov/Offices/learning-services/curriculum-support/arkansas-academic-standards
+California,General,🚨 CHANGE DETECTED!,2026-04-08,2022,5a697be682dc8aa0218dfc305728f6e9bf3173abe7174b7c6a530af7e7ed7792,https://www.cde.ca.gov/be/st/ss/
+Colorado,General,✔️ No changes,2026-04-08,2023,4dcac9a0b49aa04659145ad23d2fe81be59192acc3ed74b10b0d46835447f066,https://www.cde.state.co.us/standards
+Connecticut,General,🚨 CHANGE DETECTED!,2026-04-08,2023,379542f8fbfa24f2170a3fc95e1859d8ee592d46db301298872d40278e507de4,https://portal.ct.gov/SDE/Academic-Standards/CT-Core-Standards
+Delaware,General,✔️ No changes,2026-04-08,2023,39cd52729ec34a44208664292994a22cc8683d7758fb35df3b1f4f2a4f7f240c,https://www.doe.k12.de.us/Page/339
+Florida,General,✔️ No changes,2026-04-08,2024,cea64cd5346b6f025a9887cf0d9b1c80a048627b3afa5f98a8fe851990d15efe,https://www.fldoe.org/academics/standards/
+Georgia,General,✔️ No changes,2026-04-08,2023,4063e04e57bcad6000fda11247b6c2200bf3b62d96521ffcd73cc18739f49677,https://www.georgiastandards.org/Georgia-Standards
+Hawaii,General,✔️ No changes,2026-04-08,2023,8f522c0c9d51e261e22c5f403fff5e4c00c91171bafe898dab43c26b17adb5e8,https://www.hawaiipublicschools.org/TeachingAndLearning/StudentLearning/Pages/home.aspx
+Idaho,General,✔️ No changes,2026-04-08,2023,8273c94b6ba59e2ea7e84d61016065c24d9a1c7892407335a4b777b98b935719,https://www.sde.idaho.gov/academic/standards/
+Illinois,General,✔️ No changes,2026-04-08,2023,54b38aae740cec07bf0103d593faa52f254be7e38d7197ea6fdb90689b8c82fa,https://www.isbe.net/Pages/Learning-Standards.aspx
+Indiana,General,✔️ No changes,2026-04-08,2023,f6d298678c0e5b64bddb4fa8cf9a60398a328d16122e1fed29db029ed9f5754c,https://www.in.gov/doe/students/indiana-academic-standards/
+Iowa,General,✔️ No changes,2026-04-08,2023,dbfa26614e15df88b4ef57434e6c78754eca80557398f147f082343eb5190411,https://iowacore.gov/
+Kansas,General,❌ Error,2026-04-08,2023,,https://www.ksde.org/Agency/Division-of-Learning-Services/Career-Standards-and-Assessment-Services/Content-Area-A-E/Academic-Standards
+Kentucky,General,✔️ No changes,2026-04-08,2023,db40fa29eee768eb7d1933e7f82d6be17187c617b26f6d1690f123b8ed592e0e,https://kystandards.org/
+Louisiana,General,✔️ No changes,2026-04-08,2023,90812a9952732818a55d6c506712a7a45b6a53b08259a1ceb4c55abed423dbae,https://www.louisianabelieves.com/academics/academic-standards
+Maine,General,✔️ No changes,2026-04-08,2023,e7839eddd4bc844034de287cdc7b8340b520cc34a73170c26a764c23474281cc,https://www.maine.gov/doe/learning/content
+Maryland,General,✔️ No changes,2026-04-08,2023,d8b371e78c4a25d1655de346c3f1dab07dc2ea7a3a7d4b7e1b131ca103f2dc5d,https://www.marylandpublicschools.org/about/Pages/DCAA/index.aspx
+Massachusetts,General,✔️ No changes,2026-04-08,2023,5e3f8e54236633ed4431078c2f366c9940535acdf215b668a6035bab3c26e069,https://www.doe.mass.edu/frameworks/
+Michigan,General,✔️ No changes,2026-04-08,2023,4620cf1f151de426a941af57fd157f955b523ff07d266f759c18e14d798ac7bc,https://www.michigan.gov/mde/services/academic-standards
+Minnesota,General,✔️ No changes,2026-04-08,2023,66d3960e5df6fb4f05de0e09e20da006e7a4d18163f1d76816d4c2081fec6b90,https://education.mn.gov/MDE/dse/stds/
+Mississippi,General,✔️ No changes,2026-04-08,2023,655a30801fe958046fad2c27e9e2d9d55f3cf368250844c8ae4cfcd9234047b1,https://www.mdek12.org/OER/Standards-and-Frameworks
+Missouri,General,✔️ No changes,2026-04-08,2023,1bcd98af6318198cf6b58e58ab550265907b2ba3a8dba4ab0554565cddb63c08,https://dese.mo.gov/college-career-readiness/curriculum/missouri-learning-standards
+Montana,General,✔️ No changes,2026-04-08,2023,30eb08d47622cb14a7f20de2d3acbf5d0e3e8b3a9fd54a75e7dc37f56207f7dc,https://opi.mt.gov/Educators/Teaching-Learning/K-12-Content-Standards-Revision
+Nebraska,General,✔️ No changes,2026-04-08,2023,f2a78730a7a5e189421eef3a1c1bf1ec7fc5e87fca7604c0afdbfa7d5c1797c4,https://www.education.ne.gov/contentareachangeareastandards/
+Nevada,General,✔️ No changes,2026-04-08,2023,eff4b11baa890b724f3b80897bb593508016e5458634fe13bba8be8b0f01a478,https://doe.nv.gov/Academic_Standards/
+New Hampshire,General,✔️ No changes,2026-04-08,2023,aa08409b09bbdd666b8aa5d8bb6a6c8a15130666cb231c540aae28dfb4573744,https://www.education.nh.gov/who-we-are/division-of-learner-support/bureau-of-instructional-support/academic-standards
+New Jersey,General,🚨 CHANGE DETECTED!,2026-04-08,2023,8b6fa5ab01f2b86943d07bf0032b29d474d0f256bb21f13649e83eaf6c8d5c4c,https://www.nj.gov/education/standards/
+New Mexico,General,❌ Error,2026-04-08,2023,,https://webnew.ped.state.nm.us/bureaus/instructional-requirements/
+New York,General,✔️ No changes,2026-04-08,2023,6449ae68f8c67350a372c0a9f131e4874d8a60e8d4791eb70fa5ca75768bdeb9,http://www.nysed.gov/curriculum-instruction
+North Carolina,General,✔️ No changes,2026-04-08,2023,2a854f124e32aa2343e90e27e38537d6cc9191e053c13665c9718274482ebffb,https://www.dpi.nc.gov/districts-schools/classroom-resources/k-12-standards-curriculum-and-instruction
+North Dakota,General,✔️ No changes,2026-04-08,2023,64dc543295f3e6800b731162a5e7e50cc9a5beef68da5f3dcdf19cf6cab7f465,https://www.nd.gov/dpi/EducationPrograms/K12/
+Ohio,General,✔️ No changes,2026-04-08,2023,64d0d325cc2f927086eda85fe8c4c0b4e4ac0e98eb0467bfa3ebc640bf93b70d,https://education.ohio.gov/Topics/Learning-in-Ohio/Ohios-Learning-Standards
+Oklahoma,General,✔️ No changes,2026-04-08,2023,e7b4a3079719b20fe6ab1943aea3ab0ecd6b5067d38298d2ceb73be7aca8c34d,https://sde.ok.gov/oklahoma-academic-standards
+Oregon,General,✔️ No changes,2026-04-08,2023,255613a7f583ec38ef8372944b52387c863a450a3e0189a1cf427685b62fa42a,https://www.oregon.gov/ode/educator-resources/standards/Pages/default.aspx
+Pennsylvania,General,✔️ No changes,2026-04-08,2023,658ab610151a2b250374c451898b1657e5f53575ace312ead4bbb345104da69d,https://www.pdesas.org/Standard/StandardsHierarchy
+Rhode Island,General,✔️ No changes,2026-04-08,2023,3defbe3a175b944e2cd4000e9bda9e676d6739107b5fd07be72f6ed6e6e3310c,https://www.ride.ri.gov/InstructionAssessment/LearningStandards.aspx
+South Carolina,General,✔️ No changes,2026-04-08,2023,2310362bb3d4d9fa9576e09610c8a491fd3e15df78f635f0476036b375b70145,https://ed.sc.gov/instruction/standards-learning/
+South Dakota,General,✔️ No changes,2026-04-08,2023,cf5f8dfc8a18dddabba9157808992ac7b026b5bfbc22db977e30babd6df1f348,https://doe.sd.gov/contentstandards/
+Tennessee,General,❌ Error,2026-04-08,2023,,https://www.tn.gov/education/districts/academic-standards.html
+Texas,General,✔️ No changes,2026-04-08,2023,ddc8fc7d6e7a404d90b501555b0dd14c52c611976e2f343b98c2d48eccdd0e75,https://tea.texas.gov/academics/curriculum/teks/texas-essential-knowledge-and-skills
+Utah,General,✔️ No changes,2026-04-08,2023,80c3fe2ae1062abf56456f52518bd670f9ec3917b7f85e152b347ac6b6faf880,https://www.schools.utah.gov/curr/utahcore
+Vermont,General,✔️ No changes,2026-04-08,2023,8878c09da5674910c956bee4febb28350cf840c6e48c47d9c0e883811a35090a,https://education.vermont.gov/student-learning/content-areas
+Virginia,General,✔️ No changes,2026-04-08,2023,a5acdf052453c204b3ce2607dcb5cc8716acaf04b314c6eb54e8da5b6f734f1f,https://www.doe.virginia.gov/testing/index.shtml
+Washington,General,✔️ No changes,2026-04-08,2023,8cf050eb0d72e45ca1cddf205185281c403cf679f6622b6bc43e75abd287cb43,https://www.k12.wa.us/student-success/learning-standards-instructional-materials
+West Virginia,General,✔️ No changes,2026-04-08,2023,9a2708370894b76d4f2b78cd5cf894167146ca0c23c691d554bff43956518ce4,https://wvde.us/tree/
+Wisconsin,General,✔️ No changes,2026-04-08,2023,50c587fab2a88f62541e7afda617aba29acdd8cf797df3666570cc5d82c6c265,https://dpi.wi.gov/standards
+Wyoming,General,✔️ No changes,2026-04-08,2023,77702db3d251dcc320f7816db60437e75d16a939ed1ada08953b9ed47c67111c,https://edu.wyoming.gov/educators/standards/
