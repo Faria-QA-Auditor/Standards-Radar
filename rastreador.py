@@ -5,81 +5,84 @@ from datetime import datetime
 import os
 from concurrent.futures import ThreadPoolExecutor
 
-# Configuración de archivos
 INPUT_FILE = "standards_list.csv"
 OUTPUT_FILE = "auditoria_beta_v1.csv"
 
 def check_site(row):
-    """
-    Función que revisa un solo sitio y devuelve el diagnóstico detallado.
-    """
-    url = str(row['URL']).strip()
-    # User-Agent para intentar "engañar" a los firewalls de los estados (como Kansas)
+    # Limpieza profunda de la URL
+    url = str(row.get('URL', '')).strip()
+    if not url or url.lower() == 'nan':
+        return None
+
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
     }
     
     try:
-        # Timeout de 30 segundos para dar tiempo a sitios lentos (Tennessee/Arkansas)
         res = requests.get(url, headers=headers, timeout=30, allow_redirects=True)
         
-        # 1. Diagnóstico de Errores HTTP (403, 404, 500, etc.)
         if res.status_code != 200:
-            return {
-                "Organization": row['Organization'],
-                "Subject": row['Subject'],
-                "Status": f"❌ Error {res.status_code}",
-                "Check Date": datetime.now().strftime("%Y-%m-%d"),
-                "Mapped Version": row['Mapped_Version'],
-                "Hash": row.get('Hash'), # Mantenemos el último hash conocido
-                "URL": url
-            }
-
-        # 2. Si el sitio responde bien (200 OK), calculamos el Fingerprint
-        new_hash = hashlib.sha256(res.text.encode('utf-8')).hexdigest()
-        old_hash = row.get('Hash')
-
-        # 3. Comparación para detectar cambios (🚨)
-        if pd.isna(old_hash) or old_hash == "" or str(old_hash).lower() == "none":
-            status = "✔️ No changes"
-        elif str(new_hash) != str(old_hash):
-            status = "🚨 CHANGE DETECTED!"
+            status = f"❌ Error {res.status_code}"
+            new_hash = row.get('Hash')
         else:
-            status = "✔️ No changes"
+            new_hash = hashlib.sha256(res.text.encode('utf-8')).hexdigest()
+            old_hash = row.get('Hash')
+            
+            if pd.isna(old_hash) or old_hash == "" or str(old_hash).lower() == "none":
+                status = "✔️ No changes"
+            elif str(new_hash) != str(old_hash):
+                status = "🚨 CHANGE DETECTED!"
+            else:
+                status = "✔️ No changes"
 
         return {
-            "Organization": row['Organization'],
-            "Subject": row['Subject'],
+            "Organization": row.get('Organization', 'Unknown'),
+            "Subject": row.get('Subject', 'General'),
             "Status": status,
             "Check Date": datetime.now().strftime("%Y-%m-%d"),
-            "Mapped Version": row['Mapped_Version'],
+            "Mapped Version": row.get('Mapped_Version', 'N/A'),
             "Hash": new_hash,
             "URL": url
         }
 
-    # 4. Diagnóstico de errores de red (Timeouts y Conexión)
-    except requests.exceptions.Timeout:
-        error_msg = "❌ Timeout (Slow Site)"
-    except requests.exceptions.ConnectionError:
-        error_msg = "❌ Connection Refused"
     except Exception as e:
-        error_msg = "❌ Request Failed"
-
-    return {
-        "Organization": row['Organization'],
-        "Subject": row['Subject'],
-        "Status": error_msg,
-        "Check Date": datetime.now().strftime("%Y-%m-%d"),
-        "Mapped Version": row['Mapped_Version'],
-        "Hash": row.get('Hash'),
-        "URL": url
-    }
+        # Capturamos el tipo de error para el reporte
+        error_type = type(e).__name__
+        return {
+            "Organization": row.get('Organization', 'Unknown'),
+            "Subject": row.get('Subject', 'General'),
+            "Status": f"❌ {error_type}",
+            "Check Date": datetime.now().strftime("%Y-%m-%d"),
+            "Mapped Version": row.get('Mapped_Version', 'N/A'),
+            "Hash": row.get('Hash'),
+            "URL": url
+        }
 
 def run_parallel_audit():
-    # Verificamos que exista la lista maestra
     if not os.path.exists(INPUT_FILE):
-        print(f"CRITICAL ERROR: {INPUT_FILE} not found.")
+        print("Input file missing")
         return
 
-    df
+    # Cargamos y limpiamos el CSV de entrada
+    df_list = pd.read_csv(INPUT_FILE)
+    df_list.columns = df_list.columns.str.strip() # Borra espacios en nombres de columnas
+    
+    if os.path.exists(OUTPUT_FILE):
+        df_prev = pd.read_csv(OUTPUT_FILE)
+        df_prev.columns = df_prev.columns.str.strip()
+        # Mantenemos los hashes previos
+        df_to_check = pd.merge(df_list, df_prev[['Organization', 'Hash']], on='Organization', how='left')
+    else:
+        df_to_check = df_list
+
+    # Ejecución en paralelo
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        results = list(executor.map(check_site, df_to_check.to_dict('records')))
+    
+    # Filtramos resultados nulos y guardamos
+    final_results = [r for r in results if r is not None]
+    pd.DataFrame(final_results).to_csv(OUTPUT_FILE, index=False)
+    print("Audit finished successfully.")
+
+if __name__ == "__main__":
+    run_parallel_audit()
