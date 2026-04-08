@@ -7,9 +7,9 @@ st.set_page_config(page_title="Standards Radar", page_icon="📡", layout="wide"
 # --- LOGO LOCAL ---
 # Asegúrate de que "logo.png" sea el nombre exacto de tu archivo en GitHub
 try:
-    st.sidebar.image("logo.png", use_container_width=True)
+    st.sidebar.image("logo.jpg", use_container_width=True)
 except:
-    st.sidebar.warning("Logo file 'logo.png' not found in repository.")
+    st.sidebar.warning("Logo file 'logo.jpg' not found in repository.")
 
 st.sidebar.divider()
 
