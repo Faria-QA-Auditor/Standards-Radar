@@ -1,0 +1,36 @@
+name: Standards Radar Update
+
+on:
+  schedule:
+    - cron: '0 13 * * 1' # Every Monday at 8 AM Bogotá
+  workflow_dispatch: # Allows manual run
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Crucial for saving the CSV
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11' # Stable version
+
+      - name: Install dependencies
+        run: |
+          pip install pandas requests
+
+      - name: Run tracker
+        run: python rastreador.py
+
+      - name: Commit and Push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add auditoria_beta_v1.csv
+          # This avoids error if nothing changed
+          git commit -m "Automated standards update" || echo "No changes to commit"
+          git push
