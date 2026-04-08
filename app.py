@@ -4,14 +4,14 @@ from datetime import datetime
 
 # Basic Page Configuration
 st.set_page_config(
-    page_title="Standards Radar Pro | Faria Education Group",
+    page_title="Standards Radar | Faria Education Group",
     page_icon="📡",
     layout="wide"
 )
 
 # --- SIDEBAR: LOGO & FILTERS ---
 # Replace with the exact logo URL used in QA Auditor
-LOGO_URL = "https://images.faria.org/logo-faria.png" 
+LOGO_URL = "https://images.faria.org/logo.jpg" 
 
 st.sidebar.image(LOGO_URL, use_container_width=True)
 st.sidebar.caption("Standards & Services Department")
